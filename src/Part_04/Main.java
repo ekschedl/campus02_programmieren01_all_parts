@@ -9,7 +9,7 @@ public class Main {
         //SummeAllerElementeImArray();
         //MultiArraySpielereien();
         //EinzelneDimensionenSummenVergleichen();
-        //ArrayUnreschiedlicheLaenge_Summe();
+        ArrayUnreschiedlicheLaenge_Summe();
         DreidimensionalesArray();
 
     }
@@ -121,7 +121,7 @@ public class Main {
 
     //Array mit unterschiedlicher Länge bei der Zeilen
     public static void ArrayUnreschiedlicheLaenge_Summe() {
-        int[][] arr = new int[4][2];
+        int[][] arr = new int[4][];
         Random random = new Random();
 
         //Befüllen
