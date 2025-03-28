@@ -6,8 +6,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Menu(); // Menü aufrufen
-        Bankomat();
+       //Menu(); // Menü aufrufen
+       // Bankomat();
 
     }
     //-----------------------------------------------------------------------------/
@@ -30,7 +30,7 @@ public class Main {
             /*if (userChoice == 1) {
                 StringDirection();
             } else if (userChoice == 2) {
-                NumbersChecken();
+                GeradeOderNichtGerade();
             } else if (userChoice == 3) {
                 VokaleInSatz();
             } else if (userChoice == 4) {
@@ -50,7 +50,7 @@ public class Main {
                     StringDirection();
                     break;
                 case 2:
-                    NumbersChecken();
+                    GeradeOderNichtGerade();
                     break;
                 case 3:
                     VokaleInSatz();
@@ -99,7 +99,7 @@ public class Main {
     //einzugeben, und dann prüft, ob die ganze Zahl gerade oder ungerade ist. Das
     //Programm soll eine Meldung ausgeben, die angibt, ob die ganze Zahl gerade oder
     //ungerade ist.
-    public static void NumbersChecken() {
+    public static void GeradeOderNichtGerade() {
         // Ausgabe was für Programm ist und Aufforderung zur Eingabe einer Zahl
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ich sage, ob eine Zahl gerade oder nicht gerade ist.\nGeben Sie Ihre Zahl hier ein:");
@@ -107,7 +107,7 @@ public class Main {
         int userNumber = scanner.nextInt(); // Liest eine ganze Zahl von der Konsole ein und speichert sie in dieser Variable
         if (userNumber == 0) { // Sonderfall: Falls die eingegebene Zahl 0 ist
             System.out.println("Ihre Zahl ist 0.\nMathematisch gesehen ist 0 eine gerade Zahl.\n");
-        } else if (userNumber % 2 == 0) { //Prüft, ob die Zahl durch 2 teilbar ist
+        } else if (userNumber % 2 == 0) { //Prüft mithilfe von Modulo , ob die Zahl durch 2 teilbar ist
             System.out.println("Die Zahl " + userNumber + " ist gerade.\n");
         } else { //Falls die Zahl nicht durch 2 teilbar ist
             System.out.println("Die Zahl " + userNumber + " ist nicht gerade.\n");

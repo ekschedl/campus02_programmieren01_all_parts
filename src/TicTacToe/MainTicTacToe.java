@@ -21,6 +21,8 @@ public class MainTicTacToe {
         boolean spielOn = true;
         boolean spielerX = true; // True = X, False = O
         String spielZeichen = "";
+        Scanner scanner = new Scanner(System.in);
+
 
         // Variable für die Koordinaten
         int x = 0;
@@ -45,7 +47,6 @@ public class MainTicTacToe {
             }
             // Eingabeaufforderung für Spieler X oder O, je nach "spielZeichen"
             System.out.println("Spieler " + spielZeichen + ", bitte geben Sie Ihren Zug ein.");
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Geben Sie eine Zahl 'x' für Ihren Schritt ein: ");
             x = scanner.nextInt();
             System.out.println("Geben Sie eine Zahl 'y' für Ihren Schritt ein: ");
@@ -73,7 +74,6 @@ public class MainTicTacToe {
 
                             System.out.println(" Spieler " + spielZeichen + " hat gewonnen!");
                             spielOn = false;
-                            break;
                         }
                     }
 

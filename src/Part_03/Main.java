@@ -9,16 +9,33 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         //ArrayNichtAufEinmal();
+        // ArrayNichtAufEinmal_herzic();
+
         //ArrayMaxGleitkommazahl();
+        // ArrayMaxGleitkommazahl_herzic();
+
         //ArrayLength8Strings();
+        //ArrayLength8Strings_herzic();
+
         //ArraySummeOf12Elemente();
+        //ArraySummeOf12Elemente_herzic();
+
         //Array15Zufalls();
+        //Array15Zufalls_herzic();
+
         //Array20GeradeZufalls();
+        //Array20GeradeArray_herzic();
+
         //Array10SpezialStart();
+        //Array10SpezialStart_herzic();
+
+        //Array10ZahlenMax();
+        Array10ZahlenMax_herzic();
+
         //Array10ZahlenMax();
         //Array6ZahlenMin();
         //Array9GleitkommaDurchschnitt();
-        MalReichen();
+        //MalReichen();
 
     }
 
@@ -37,6 +54,15 @@ public class Main {
         for (int number : numbers) {
             System.out.println(number);// Gibt die aktuelle Zahl aus
             TimeUnit.MILLISECONDS.sleep(300);  // Wartet 300 Millisekunden vor der nächsten Ausgabe
+        }
+    }
+
+    public static void ArrayNichtAufEinmal_herzic() {
+        //Manuell ein Array mit 10 Ganzzahlen also int erzeugen
+        int[] zahlen = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20};
+        //Das Array Element fuer Element ausgeben
+        for (int i = 0; i < zahlen.length; i++) {
+            System.out.println(zahlen[i]);
         }
     }
     /*----------------------------------------------------------------------*/
@@ -68,6 +94,28 @@ public class Main {
         // Gibt die Ergebnisse aus
         System.out.println("Das größte Element im Array ist: " + max);
         System.out.println("Das kleinste Element im Array ist: " + min);
+    }
+
+    public static void ArrayMaxGleitkommazahl_herzic() {
+        {
+            //Ein Array vom Typen Double erzeugen und mit 5 Gleitkommazahlen befuellen
+            double[] zahlen = {2.5, 6.8, 3.2, 9.7, 5.1};
+            //Hilfsvariable um das groesste Element zu finden, wird
+            //ueblicherweise mit dem ersten Wert des Arrays defaultmaessig initialisiert
+            double max = zahlen[0];
+            //Schleife um den groessten Wert zu finden
+            for (int i = 1; i < zahlen.length; i++) {
+                //Falls zahl an Stelle i > als die bisher angenommene groesste
+                // Zahl -> Dann geh in die If hinein
+                if (zahlen[i] > max) {
+                    //Wir wissen nun das zahl an Stelle i groesser ist als max
+                    // also nimmt max den Wert von Zahl an Stelle i an
+                    max = zahlen[i];
+                }
+            }
+            //Ausgabe der groessten Zahl im Array
+            System.out.println("Das größte Element im Array ist " + max);
+        }
     }
     /*----------------------------------------------------------------------*/
 
@@ -106,6 +154,20 @@ public class Main {
             System.out.println("Das Word \"" + words[i] + "\" hat " + length + " Buchstaben");
         }*/
     }
+
+    public static void ArrayLength8Strings_herzic() {
+        //Ein Array von 8 Strings erzeugen und die Werte gleich entsprechend zuweisen
+
+        String[] namen = {"Anna", "Berta", "Carla", "Daniel", "Emma",
+                "Fritz", "Gabi", "Hans"};
+        //Die Laenge eines jeden einzelnen Strings herausfinden und
+        //gleichzeitig ausgeben
+        for (int i = 0; i < namen.length; i++) {
+            System.out.println("Der Name " + namen[i] + " hat " +
+                    namen[i].length() + " Buchstaben.");
+        }
+    }
+
     /*----------------------------------------------------------------------*/
 
     //4. Schreibe ein Programm, das ein Array von 12 Ganzzahlen erzeugt (Kein Einlesen
@@ -128,6 +190,19 @@ public class Main {
         // Gibt die berechnete Summe aus
         System.out.println("Die Summe der 12 Elemente beträgt: " + sum);
     }
+
+    public static void ArraySummeOf12Elemente_herzic() {
+        //Ein int-Array mit 12 Ganzzahlen erzeugen und die Werte zuweisen
+        int[] zahlen = {5, 8, 2, 10, 3, 9, 7, 1, 6, 4, 12, 11};
+        //Hilfsvariable erzeugen um die Summe zu speichern
+        int summe = 0;
+        for (int i = 0; i < zahlen.length; i++) {
+            //Summe berechnen
+            summe += zahlen[i]; //ist gleich wei summe = summe + zahl[i}
+        }
+        System.out.println("Die Summe aller Elemente im Array ist " + summe);
+    }
+
     /*----------------------------------------------------------------------*/
 
     //5. Schreibe ein Programm, das ein Array von 15 Zufallszahlen zwischen 1 und 100
@@ -165,6 +240,25 @@ public class Main {
             }
         }
     }
+
+    public static void Array15Zufalls_herzic() {
+        //Ein int-Array mit der fixen Groesse 15 erstellen aber noch keine
+        //Werte den Elementen zuweisen
+        int[] zahlen = new int[15];
+        //ACHTUNG: Sie muessen ganz oben ein import java.util.Random; einbauen!
+        Random random = new Random(); //erzeugt uns ein Objekt des Typs
+        //Random um spaeter Zufallszahlen zu erzeugen
+        for (int i = 0; i < zahlen.length; i++) {
+            //Hier weissen wir dem Element im Array zahlen an der Stelle i
+            //eine Zufaellige Zahl zwischen 1 und 100 zu
+            zahlen[i] = random.nextInt(100) + 1;
+        }
+        //Hier geben wir nun jedes einzelne Element fuer Element in der Konsole aus
+        for (int i = 0; i < zahlen.length; i++) {
+            System.out.println(zahlen[i]);
+        }
+    }
+
     /*----------------------------------------------------------------------*/
 
     //6. Schreibe ein Programm, das ein Array von 20 Ganzzahlen erzeugt (Kein Einlesen
@@ -189,6 +283,20 @@ public class Main {
         }
 
     }
+
+    public static void Array20GeradeArray_herzic() {
+        //Erzeugen von Array mit 20 Werten
+        int[] zahlen = {5, 8, 12, 15, 18, 20, 25, 30, 35, 40, 45, 50, 55, 60,
+                65, 70, 75, 80, 85, 90};
+        for (int i = 0; i < zahlen.length; i++) {
+            //Pruefen ob die Zahl gerade ist bzw. durch 2 teilbar
+            if (zahlen[i] % 2 == 0) {
+                //Ausgabe in die Konsole falls TRUE
+                System.out.println(zahlen[i] + " ist eine gerade Zahl.");
+            }
+        }
+    }
+
     /*----------------------------------------------------------------------*/
 
     //7. Schreibe ein Programm, das ein Array von 10 Strings erzeugt (Kein Einlesen von
@@ -232,6 +340,23 @@ public class Main {
 
 
     }
+
+    public static void Array10SpezialStart_herzic() {
+        //String-Array mit 10 Woertern erstellen
+        String[] woerter = {"Auto", "Apfel", "Birne", "Banane", "Blume",
+                "Computer", "Delfin", "Ente", "Erdbeere", "Fisch"};
+        //Den bestimmten Buchstaben auswaehlen
+        char startBuchstabe = 'B';
+        for (int i = 0; i < woerter.length; i++) {
+            //Pruefen ob der ine Buchstabe an der ersten Stelle also 0, dem
+            //startBuchstaben entspricht
+            if (woerter[i].charAt(0) == startBuchstabe) {
+                //Falls TRUE, dann ausgeben
+                System.out.println(woerter[i] + " beginnt mit dem Buchstaben " + startBuchstabe);
+            }
+        }
+    }
+
     /*----------------------------------------------------------------------*/
 
     //8. Schreiben Sie ein Programm, das die Elemente eines Arrays mit 10 ganzen Zahlen
@@ -273,6 +398,26 @@ public class Main {
         System.out.println("Max Zahl: " + max);
         //System.out.println("Min Zahl: " + min);
 
+    }
+
+    public static void Array10ZahlenMax_herzic() {
+        //Benutzereingabe und Variablen vorbereiten
+        Scanner input = new Scanner(System.in);
+        int[] zahlen = new int[10];
+        //Hierzu gibt es eine kurze Beschreibung im Loesungs-Dokument
+        //Hier wird der kleinstmoegliche Integer-Wert zugewiesen weil wir
+        // keinen Wert im Array haben um mit dem einen Default-Wert zuzuweisen
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < zahlen.length; i++) {
+            //Benutzereingabe um das Array mit 10 Elementen zu fuellen
+            System.out.print("Geben Sie die " + (i+1) + ". Zahl ein: ");
+            zahlen[i] = input.nextInt();
+            //gleich mitpruefen ob die eingegebene Zahl die groesste bis jetzt ist
+            if (zahlen[i] > max) {
+                max = zahlen[i]; //Falls TRUE, dann Variable max mit der aktuellen Zahl setzen
+            }
+        }
+        System.out.println("Das größte Element des Arrays ist: " + max);
     }
     /*----------------------------------------------------------------------*/
 
@@ -316,6 +461,7 @@ public class Main {
 
 
     }
+
     /*----------------------------------------------------------------------*/
 
 
@@ -354,8 +500,8 @@ public class Main {
         for (int i = 0; i < malReichen.length; i++) {
             for (int j = 0; j < malReichen[i].length; j++) {
                 for (int k = 0; k < malReichen[i][j].length; k++) {
-                    int produkt = (i + 1) * (j + 1)*(k + 1);
-                    System.out.println((i + 1) + "*" + (j + 1) + "*" + (k + 1)+ "=" + produkt);
+                    int produkt = (i + 1) * (j + 1) * (k + 1);
+                    System.out.println((i + 1) + "*" + (j + 1) + "*" + (k + 1) + "=" + produkt);
 
 
                 }
