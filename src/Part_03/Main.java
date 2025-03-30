@@ -30,11 +30,17 @@ public class Main {
         //Array10SpezialStart_herzic();
 
         //Array10ZahlenMax();
-        Array10ZahlenMax_herzic();
+        //Array10ZahlenMax_herzic();
 
         //Array10ZahlenMax();
+        //rray10ZahlenMax_herzic();
+
         //Array6ZahlenMin();
+        //Array6ZahlenMin_herzic();
+
         //Array9GleitkommaDurchschnitt();
+        //Array9GleitkommaDurchschnitt_herzic();
+
         //MalReichen();
 
     }
@@ -65,6 +71,7 @@ public class Main {
             System.out.println(zahlen[i]);
         }
     }
+
     /*----------------------------------------------------------------------*/
 
     //2. Schreibe ein Programm, das ein Array von 5 Gleitkommazahlen erzeugt (Kein
@@ -117,6 +124,7 @@ public class Main {
             System.out.println("Das größte Element im Array ist " + max);
         }
     }
+
     /*----------------------------------------------------------------------*/
 
     //3. Schreibe ein Programm, das ein Array von 8 Strings erzeugt (Kein Einlesen von
@@ -410,7 +418,7 @@ public class Main {
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < zahlen.length; i++) {
             //Benutzereingabe um das Array mit 10 Elementen zu fuellen
-            System.out.print("Geben Sie die " + (i+1) + ". Zahl ein: ");
+            System.out.print("Geben Sie die " + (i + 1) + ". Zahl ein: ");
             zahlen[i] = input.nextInt();
             //gleich mitpruefen ob die eingegebene Zahl die groesste bis jetzt ist
             if (zahlen[i] > max) {
@@ -418,9 +426,11 @@ public class Main {
             }
         }
         System.out.println("Das größte Element des Arrays ist: " + max);
-    }
-    /*----------------------------------------------------------------------*/
 
+
+    }
+
+    /*----------------------------------------------------------------------*/
 
     //9. Schreibe ein Programm, das ein Array von 6 Ganzzahlen erzeugt (Kein Einlesen
     //von der Konsole!) und das kleinste Element im Array findet und ausgibt.
@@ -462,8 +472,22 @@ public class Main {
 
     }
 
-    /*----------------------------------------------------------------------*/
+    public static void Array6ZahlenMin_herzic() {
+        //Array mit 5 Zahlen erzeugen
+        int[] zahlen = {10, 5, 8, 20, 15, 25};
+        //Hier haben wir die Zahlen schon im Array, da reicht es mit einer
+        // der Zahlen aus dem Array als Default-Wert zuzuweisen
+        int kleinsteZahl = zahlen[0];
+        for (int i = 1; i < zahlen.length; i++) {
+            if (zahlen[i] < kleinsteZahl) {
+                kleinsteZahl = zahlen[i];
+            }
+        }
+        System.out.println("Die kleinste Zahl im Array ist: " +
+                kleinsteZahl);
+    }
 
+    /*----------------------------------------------------------------------*/
 
     //10. Schreibe ein Programm, das ein Array von 9 Gleitkommazahlen erzeugt (Kein
     //Einlesen von der Konsole) und das durchschnittliche Element im Array berechnet und ausgibt.
@@ -493,6 +517,22 @@ public class Main {
         System.out.printf("Generiertes Array: %s%n", Arrays.toString(zahlen));
     }
 
+    public static void Array9GleitkommaDurchschnitt_herzic() {
+        //Erzeugen des Arrays
+        double[] zahlen = {3.5, 4.2, 6.7, 8.9, 9.3, 10.1, 12.5, 13.8, 15.2};
+        double summe = 0;
+        for (int i = 0; i < zahlen.length; i++) {
+            summe += zahlen[i];
+        }
+        //Berechnung und Ausgabe des Durschnitts -> Nicht in der Schleife,
+        //das kommt erst am Ende!
+        double durchschnitt = summe / zahlen.length;
+        System.out.println("Der Durchschnitt der Zahlen im Array beträgt: " +
+                durchschnitt);
+    }
+
+    /*----------------------------------------------------------------------*/
+
     //11. MalReichen()
     public static void MalReichen() {
         int[][][] malReichen = new int[3][3][3];
@@ -502,8 +542,6 @@ public class Main {
                 for (int k = 0; k < malReichen[i][j].length; k++) {
                     int produkt = (i + 1) * (j + 1) * (k + 1);
                     System.out.println((i + 1) + "*" + (j + 1) + "*" + (k + 1) + "=" + produkt);
-
-
                 }
                 System.out.println("++++");
             }

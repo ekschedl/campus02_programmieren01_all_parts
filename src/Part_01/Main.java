@@ -6,8 +6,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-       //Menu(); // Menü aufrufen
-       // Bankomat();
+        //Menu(); // Menü aufrufen
+//               "\n1. Umgekehrte Stringausgabe" +
+//                "\n2. Prüfen, ob eine Zahl gerade oder ungerade ist" +
+//                "\n3. Vokale zählen" +
+//                "\n4. Fakultät berechnen" +
+//                "\n5. Nummer in englische Wörter konvertieren" +
+//                "\n6. Beenden");
+        // Bankomat();
+        HumanicRabatt();
 
     }
     //-----------------------------------------------------------------------------/
@@ -388,5 +395,39 @@ public class Main {
 
             }
         } while (userChoice != 4);
+    }
+
+    //-----------------------------------------------------------------------------/
+
+    //    Geburtstagsaktion beim Humanic – für alle die zwischen 25
+    //    und 30 Jahre alt werden – pro erreichtem Alter in Jahren, werden
+    //    Rabatte in gleicher Höhe vergeben.
+    public static void HumanicRabatt() {
+        int alter = 25; //Jahre
+        double einkauf = 100; //Euro
+        switch (alter) {
+            case 25:
+                einkauf = einkauf * 0.75;
+                break;
+            case 26:
+                einkauf = einkauf * 0.74;
+                break;
+            case 27:
+                einkauf = einkauf * 0.73;
+                break;
+            case 28:
+                einkauf = einkauf * 0.72;
+                break;
+            case 29:
+                einkauf = einkauf * 0.71;
+                break;
+            case 30:
+                einkauf = einkauf * 0.70;
+                break;
+            default:
+
+                System.out.println("Sie liegen leider außerhalb der Aktion - Kein Rabatt für Sie");
+        }
+        System.out.println("Ihre Gesamtrechnung betraegt " + einkauf);
     }
 }
