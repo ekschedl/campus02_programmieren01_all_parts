@@ -17,12 +17,11 @@ public class MainTicTacToe {
     }
 
     public static void Spiel() {
+        Scanner scanner = new Scanner(System.in);
         String[][] feld = new String[3][3];
-        boolean spielOn = true;
         boolean spielerX = true; // True = X, False = O
         String spielZeichen = "";
-        Scanner scanner = new Scanner(System.in);
-
+        int zugCounter = 0;
 
         // Variable für die Koordinaten
         int x = 0;
@@ -38,65 +37,75 @@ public class MainTicTacToe {
         // Feld Ausgeben
         FeldErstellen(feld);
 
-        while (spielOn) {
+        while (true) {
             // Aktuellen Spieler bestimmen
             if (spielerX) {
                 spielZeichen = "X";
             } else {
                 spielZeichen = "O";
             }
-            // Eingabeaufforderung für Spieler X oder O, je nach "spielZeichen"
-            System.out.println("Spieler " + spielZeichen + ", bitte geben Sie Ihren Zug ein.");
-            System.out.println("Geben Sie eine Zahl 'x' für Ihren Schritt ein: ");
-            x = scanner.nextInt();
-            System.out.println("Geben Sie eine Zahl 'y' für Ihren Schritt ein: ");
-            y = scanner.nextInt();
 
-            if (x >= 0 && x <= 2 && y >= 0 && y <= 2) { // überprüfen Zahlen 0 bis 2
-                if (feld[x][y].equals(" - ")) { // Überprüfen ob frei, also " - " ist
-                    feld[x][y] = " " + spielZeichen + " "; // wenn frei-spielZeichen setzen
-                    // Feld neue Ausgabe
-                    FeldErstellen(feld);
-                    // Spieler wechseln
-                    spielerX = !spielerX;
-
-                    // Überprüfen Gewinn
-                    for (int i = 0; i < 3; i++) {
-                        // Horizontale
-                        if ((feld[i][0].equals(" " + spielZeichen + " ") &&
-                                feld[i][1].equals(" " + spielZeichen + " ") &&
-                                feld[i][2].equals(" " + spielZeichen + " ")) ||
-                                // Vertikale
-                                (feld[0][i].equals(" " + spielZeichen + " ") &&
-                                        feld[1][i].equals(" " + spielZeichen + " ") &&
-                                        feld[2][i].equals(" " + spielZeichen + " "))) {
-                            System.out.println("-- G-E-W-I-N-N! -- ");
-
-                            System.out.println(" Spieler " + spielZeichen + " hat gewonnen!");
-                            spielOn = false;
-                        }
+            // Eingabe-Schleife für gültige Koordinaten
+            while (true) {
+                System.out.println("Spieler " + spielZeichen + ", geben Sie Ihre Koordinaten (x y) ein: ");
+                x = scanner.nextInt() - 1;
+                y = scanner.nextInt() - 1;
+                if (x >= 0 && x < 3 && y >= 0 && y < 3) {
+                    if (feld[x][y].equals(" - ")) {
+                        break; // gültige Eingabe
+                    } else {
+                        System.out.println("Feld ist bereits besetzt, bitte wählen Sie ein anderes Feld.");
                     }
-
-                    // Diagonale Überprüfung
-                    // Hauptdiagonale
-                    if ((feld[0][0].equals(" " + spielZeichen + " ") &&
-                            feld[1][1].equals(" " + spielZeichen + " ") &&
-                            feld[2][2].equals(" " + spielZeichen + " ")) ||
-                            // Nebendiagonale
-                            (feld[0][2].equals(" " + spielZeichen + " ") &&
-                                    feld[1][1].equals(" " + spielZeichen + " ") &&
-                                    feld[2][0].equals(" " + spielZeichen + " "))) {
-                        System.out.println("-- G-E-W-I-N-N! -- ");
-                        System.out.println("Spieler " + spielZeichen + " hat gewonnen!");
-                        spielOn = false;
-                    }
-
-                } else { // wenn Feld nicht frei ist
-                    System.out.println("Feld ist bereits besetzt, geben Sie eine andere Zahl ein");
+                } else {
+                    System.out.println("Ungültige Eingabe. Bitte Zahlen von 1 bis 3 verwenden.");
                 }
-            } else { // wenn ungültige Eingabe ist
-                System.out.println("ungültige Eingabe. Bitte Zahlen von 0 bis 2");
             }
+
+            // Zeichen setzen und Spielfeld ausgeben
+            feld[x][y] = " " + spielZeichen + " "; // wenn frei-spielZeichen setzen
+            // Feld neue Ausgabe
+            FeldErstellen(feld);
+
+            // Überprüfen Gewinn
+            for (int i = 0; i < 3; i++) {
+                // Horizontale
+                if ((feld[i][0].equals(" " + spielZeichen + " ") &&
+                        feld[i][1].equals(" " + spielZeichen + " ") &&
+                        feld[i][2].equals(" " + spielZeichen + " ")) ||
+                        // Vertikale
+                        (feld[0][i].equals(" " + spielZeichen + " ") &&
+                                feld[1][i].equals(" " + spielZeichen + " ") &&
+                                feld[2][i].equals(" " + spielZeichen + " "))) {
+                    System.out.println("-- G-E-W-I-N-N! -- ");
+
+                    System.out.println(" Spieler " + spielZeichen + " hat gewonnen!");
+                    return;
+                }
+            }
+
+            // Diagonale Überprüfung
+            if ((feld[0][0].equals(" " + spielZeichen + " ") &&
+                    feld[1][1].equals(" " + spielZeichen + " ") &&
+                    feld[2][2].equals(" " + spielZeichen + " ")) ||
+                    (feld[0][2].equals(" " + spielZeichen + " ") &&
+                            feld[1][1].equals(" " + spielZeichen + " ") &&
+                            feld[2][0].equals(" " + spielZeichen + " "))) {
+                System.out.println("-- G-E-W-I-N-N! -- ");
+                System.out.println("Spieler " + spielZeichen + " hat gewonnen!");
+                return;
+
+            }
+
+            zugCounter++;// Züge Counter erhöhen
+            //check Unentschieden
+
+            if (zugCounter == 9) {
+                FeldErstellen(feld);
+                System.out.println("Keiner hat gewonnen");
+                return; // Spiel endet
+            }
+            // Spieler wechseln
+            spielerX = !spielerX;
         }
     }
 }
