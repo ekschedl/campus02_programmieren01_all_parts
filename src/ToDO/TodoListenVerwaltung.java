@@ -1,110 +1,112 @@
 package ToDO;
 
+import Library.Book;
+
 public class TodoListenVerwaltung {
+    private Task[] tasks; // Array zur Speicherung der Aufgaben
 
-    private Task[] tasks;
-    private int nextId;
-    private int numberOfTasks;
+    // Konstruktor zur Initialisierung der Aufgabenliste mit einer bestimmten Größe
+    public TodoListenVerwaltung(int listeGroesse) {
+        tasks = new Task[listeGroesse];
 
-    // Konstruktor
-    public TodoListenVerwaltung(int maxNumberOfTasks) {
-        this.tasks = new Task[maxNumberOfTasks];// Initialisierung des Arrays für Aufgaben
-        this.nextId = 0;
-        this.numberOfTasks = 0;
     }
 
     // Methode zum Hinzufügen einer neuen Aufgabe
     public void addTask(String title) {
-        if (numberOfTasks >= tasks.length) {
-            System.out.println("Task-Liste ist voll!");
-            return;
-        }
-        // Checken  freien Platz im Array
         for (int i = 0; i < tasks.length; i++) {
-            if (tasks[i] == null) {
-                tasks[i] = new Task(nextId++, title, false); //  nextId für eine eindeutige ID
-                System.out.println("Added: " + tasks[i]);// Ausgabe der hinzugefügten Aufgabe
-                numberOfTasks++; // Anzahl der Aufgaben erhöhen
-                break; //Schleife nach dem Hinzufügen der Aufgabe beenden
+            if (tasks[i] == null) { // Überprüfen, ob der aktuelle Platz im Array frei ist
+                //  hier wäre id ab 1              int nextId = i + 1; // Beispiel: ID basierend auf dem Index (oder eine andere Logik)
+                //  hier wäre id ab 1            tasks[i] = new Task(nextId, title, false); // Neues Task-Objekt erstellen
+                // hier id beginnt  ab 0:
+                tasks[i] = new Task(i, title, false); // Neue Aufgabe mit ID basierend auf dem Index erstellen
+                System.out.println("Aufgabe '" + title + "' hinzugefügt");
+                return; // Methode beenden, nachdem die Aufgabe hinzugefügt wurde
             }
         }
+        System.out.println("Kein freier Platz verfügbar.");
     }
 
-    // Methode zum Abrufen einer Aufgabe mit ID
+
+    //Methode zum Abrufen einer Aufgabe mit ID
     public Task getTask(int id) {
+//       mit  for standard schleife
         for (int i = 0; i < tasks.length; i++) {
-            //zuweisen Objekt zum array
-            Task task = tasks[i];// Zuweisung der Aufgabe aus dem Array
-            // Überprüfen, ob die Aufgabe existiert und die ID übereinstimmt
-            //!=0 um nullpointerexception zu vermeiden
-            if (task != null && task.getId() == id) {
-                // ausgabe
+            if (tasks[i] != null && tasks[i].getId() == id) {
                 return tasks[i];
             }
         }
-        // wenn if bedingung nicht erreicht gibt null zurück
+        System.out.println("Es gibt kein Task mit dieser ID.");
+
         return null;
+//mit for each schleife
+//        for (Task task : tasks) {
+//            if (task != null && task.getId() == id) {
+//                return task;
+//            }
+//        }
+
     }
 
     //methode zum verändern des boolean wertes der Task-Klasse
     public void markTaskComplete(int id) {
         for (int i = 0; i < tasks.length; i++) {
-            //zuweisen Objekt zum array
-            Task task = tasks[i];
-            // bedingung mit getter aus Klasse task
-            //!=0 um nullpointerexception zu vermeiden
-            // Überprüfen, ob die Aufgabe existiert und die ID übereinstimmt
-            if (task != null && task.getId() == id) {
-                // boolean auf true setzen mit setter methode aus der Task-Klasse
-                tasks[i].setComplete(true); // Setzen des Status der Aufgabe auf abgeschlossen
-
-            }
-        }
-    }
-
-    //Methode zum löschen des Tasks
-    public void deleteTask(int id) {
-        //iteration
-        for (int i = 0; i < tasks.length; i++) {
-            //zuweisen Objekt zum array
-            Task task = tasks[i];
-            // bedingung mit getter aus Klasse task
-            //!=0 um nullpointerexception zu vermeiden
-            // Überprüfen, ob die Aufgabe existiert und die ID übereinstimmt
-            if (task != null && task.getId() == id) {
-                System.out.println("Deleted: " + tasks[i]);
-                // löschen des Objekts
-                tasks[i] = null;
-                //counter für Array ist voll Abfrage
-                numberOfTasks--;
-            }
-        }
-
-    }
-
-    //Methode für die Konsolenausgabe
-    public void displayTask() {
-        //Variable für ausgabe in der konsole, deklariert und initialisiert
-        String d = "";
-        // Kopfzeile der Ausgabe
-        System.out.println("ID\tTitel\t\tStatus");
-
-        //iteration mit loop
-        for (int i = 0; i < tasks.length; i++) {
-            // Überprüfen, ob die Aufgabe nicht null ist
-            if (tasks[i] != (null)) {
-                // Wenn die Aufgabe abgeschlossen ist, setze den Status auf "done"
+            if (tasks[i] != null && tasks[i].getId() == id) {
                 if (tasks[i].isComplete()) {
-                    //für true
-                    d = "done";
+                    System.out.println("Geht nicht. Task mit ID " + id + " ist bereits abgeschlossen.");
                 } else {
-                    // für false
-                    d = "offen";
+                    tasks[i].setComplete(true);
+                    System.out.println("Gemacht. Task mit ID " + id + " wurde als abgeschlossen markiert.");
                 }
-                // Ausgabe der Aufgabe mit ihrer ID, Titel und Status
-                System.out.println("0" + tasks[i].getId() + "\t" + tasks[i].getTitle() + "\t\t" + d);
+                return;
             }
         }
-        System.out.println();
+        System.out.println("Task mit ID " + id + " wurde nicht gefunden.");
+    }
+
+    public void markTaskNoComplete(int id) {
+        for (int i = 0; i < tasks.length; i++) {
+            if (tasks[i] != null && tasks[i].getId() == id) {
+                if (!tasks[i].isComplete()) {
+                    System.out.println("Geht nicht. Task mit ID " + id + " ist bereits nicht abgeschlossen.");
+                } else {
+                    tasks[i].setComplete(false);
+                    System.out.println("Gemacht. Task mit ID " + id + " wurde als nicht abgeschlossen markiert.");
+                }
+                return;
+            }
+        }
+        System.out.println("Task mit ID " + id + " wurde nicht gefunden.");
+    }
+
+    //Methode zum Löschen des Tasks
+    public void deleteTask(int id) {
+        for (int i = 0; i < tasks.length; i++) {
+            if (tasks[i] != null && tasks[i].getId() == id) {
+                System.out.println("Gelöscht Task id: " + tasks[i].getId());
+                tasks[i] = null;
+                return; // Methode beenden, nachdem die Aufgabe hinzugefügt wurde
+            }
+        }
+
+    }
+
+    //    //Methode für die Konsolenausgabe
+    public void displayTasks() {
+        System.out.printf("%-5s %-20s %-10s%n", "ID", "Titel", "Status");
+        for (int i = 0; i < tasks.length; i++) {
+            if (tasks[i].isComplete()) {
+                System.out.printf("%-5d %-20s %-10s%n", tasks[i].getId(), tasks[i].getTitle(), "Erledigt");
+
+            } else {
+                System.out.printf("%-5d %-20s %-10s%n", tasks[i].getId(), tasks[i].getTitle(), "Offen");
+
+
+            }
+
+        }
+
     }
 }
+
+
+//String status = task.isComplete() ? "Erledigt" : "Offen";

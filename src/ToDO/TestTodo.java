@@ -2,6 +2,8 @@
 
 package ToDO;
 
+import java.util.Arrays;
+
 public class TestTodo {
     public static void main(String[] args) {
 
@@ -10,20 +12,21 @@ public class TestTodo {
 
 
         myTodoListenVerwaltung.addTask("einkaufen");
-
-
-        System.out.println(myTodoListenVerwaltung.getTask(0));
-        myTodoListenVerwaltung.deleteTask(0);
-        System.out.println(myTodoListenVerwaltung.getTask(0));
         myTodoListenVerwaltung.addTask("lesen");
-        myTodoListenVerwaltung.addTask("schlafen");
-        myTodoListenVerwaltung.displayTask();
-        myTodoListenVerwaltung.deleteTask(1);
-        myTodoListenVerwaltung.displayTask();
+        myTodoListenVerwaltung.addTask("schlaffen");
+        myTodoListenVerwaltung.addTask("putzen");
+
+        System.out.println(myTodoListenVerwaltung.getTask(2));
+        System.out.println(myTodoListenVerwaltung.getTask(0));
         myTodoListenVerwaltung.markTaskComplete(2);
-        myTodoListenVerwaltung.displayTask();
+        System.out.println(myTodoListenVerwaltung.getTask(2));
+        myTodoListenVerwaltung.markTaskNoComplete(2);
+        System.out.println(myTodoListenVerwaltung.getTask(2));
 
-
+         myTodoListenVerwaltung.getTask(1);
+        myTodoListenVerwaltung.displayTasks();
+        myTodoListenVerwaltung.markTaskComplete(2);
+        myTodoListenVerwaltung.displayTasks();
 
 
     }
